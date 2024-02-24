@@ -1,0 +1,28 @@
+<h2>{{titulo}}</h2>
+<span>{{edad}}</span>
+
+@if(ocultar)
+{
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. A doloremque eum amet ipsum temporibus, nesciunt, esse fuga quisquam consectetur ut animi perspiciatis. Deleniti, in nam ut fugiat voluptates modi aut?
+    </p>
+
+}
+@else {
+    <p>
+        SIN TEXTO
+    </p>
+}
+<!-- drawing html files of app-tablas and app-contador components -->
+<!-- insert tablas component need two parameters usuarios and tituloTabla -->
+<!-- take date of array users and sent these to tablas component -->
+<!-- for sent data to other component use [] -->
+<app-tablas [usuarios]="users" [tituloTabla]="titulo2"></app-tablas>
+<h3>Contador desde componente contador</h3>
+<!-- for save data received since other component use () -->
+<!-- how the number change went push button then conteo generated an event that will use recibircontador method for update variable throught event -->
+<!-- conteo is a function that sent an event that use emit, for this case emit take de value of variable -->
+<app-contador (conteo)="recibircontador($event)"></app-contador>
+
+<!-- print value that save on variable incremento that is update with the value of sent conteo variable of contador component -->
+Este es el valor = {{incremento}}

@@ -1,0 +1,86 @@
+  <div class="container m-5 ">
+    <table class="table table-success table-striped" border="1px solid black">
+      <thead>
+          <h3>JONY TABLA PRUEBA</h3>
+          <td>
+            <a class="btn btn-danger btn-sm" (click)="showagregarclientes()">Agregar</a>
+
+            @if (mostrar)
+            {
+             <!--  call modal app-agregarclientes 
+              infoclientenuevo is the function of type @output define inside agregarclientes.components.ts
+              the value return for this funcion will be assigned to function actualizarcliente define inside of
+              verclientes.components.ts, this funcion receive an element of type interface cliente
+               -->
+              <app-agregarclientes (infoclientenuevo)="actualizarcliente($event)"></app-agregarclientes>
+
+             
+            }
+
+          </td>
+          <tr>
+
+              
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Direccion</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>tipoDocumento</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+
+          </tr>        
+      </thead>
+      <tbody>
+        
+          @for (cliente of misclientesForm ; track $index){
+          <tr> 
+
+              
+              
+                  <td scope="col">{{cliente.id}}</td>
+                  <td>{{cliente.nombre}}</td>
+                  <td>{{cliente.direccion}}</td>
+                  <td>{{cliente.telefono}}</td>
+                  <td>{{cliente.email}}</td>
+                  <td>{{cliente.tipoDocumento}}</td>
+                  <td>{{cliente.estado}}</td>
+                  <!-- btn->button,btn-sm->button small, bg-info-> type button info -->
+                  <td>
+                                    
+                    
+                    <a class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente.id)">Eliminar</a>
+                    <a class="btn btn-success btn-sm" (click)="actualizarcliente(cliente)">Actualizar</a>
+                    <a class="btn btn-primary btn-sm" (click)="editarcliente(cliente.id)">Editar</a>
+                    <!-- <button type="submit" class="btn btn-danger btn-sm">
+                      <i class="bi bi-trash" (click)="eliminarCliente(cliente.id)"></i>ELiminar
+                    </button> -->
+                    
+                    
+                    <!--  <button type="submit" class="btn btn-danger btn-sm">
+                          <i class="bi bi-trash" (click)="eliminarCliente(cliente.id)"></i>ELiminar
+                      </button>
+
+                        <button type="submit" class="btn btn-primary btn-sm">
+                          <i class="bi bi-pencil"></i>Editar
+                        </button>
+
+                        <button type="submit" class="btn btn-success btn-sm">
+                          <i class="bi bi-journal-check"></i>Actualizar
+                        </button> -->
+                        
+                  </td>
+                
+                        
+              
+          </tr>
+      }
+        
+      </tbody>
+    </table>
+  </div>
+
+
+
+  

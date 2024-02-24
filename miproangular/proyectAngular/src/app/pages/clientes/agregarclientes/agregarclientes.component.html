@@ -1,0 +1,55 @@
+<div class="container m-5 ">
+    <form class="row g-3" [formGroup]="clienteForm"(submit)="crearcliente()">
+        <div class="col-auto">
+            <label for="id">id:</label>
+            <input type="number" formControlName="id" placeholder="Ingrese el Id del cliente"/>  
+        </div>
+        <div class="col-auto">
+            <label for="nombre">nombre:</label>
+            <input type="string" formControlName="nombre" placeholder="Ingrese el nombre del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+            <label for="direccion">direccion:</label>
+            <input type="string" formControlName="direccion" placeholder="Ingrese la direccion del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+            <label for="telefono">telefono:</label>
+            <input type="string" formControlName="telefono" placeholder="Ingrese el telefono del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+            <label for="email">email:</label>
+            <input type="string" formControlName="email" placeholder="Ingrese el email del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+
+            <label for="tipoDocumento">tipoDocumento:</label>
+            <input type="string" formControlName="tipoDocumento" placeholder="Ingrese el tipo de documento del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+            <label for="numeroDocumento">numeroDocumento:</label>
+            <input type="string" formControlName="numeroDocumento" placeholder="Ingrese el numeroDocumento del cliente"/> 
+        </div>
+
+        <div class="col-auto">
+            
+            <label for="estado">Estado:</label>  
+            <input type="checkbox" formControlName="estado" name="estado" unchecked /> 
+
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+

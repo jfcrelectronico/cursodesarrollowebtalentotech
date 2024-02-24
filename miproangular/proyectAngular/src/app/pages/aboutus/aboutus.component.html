@@ -1,0 +1,44 @@
+<h1>FOrmulario de contacto</h1>
+<p>Contactenos para obtener informacion</p>
+
+<div>
+    <!-- take information that  typed inside the form using submit create inside aboutus.component.ts the function enviarContacto-->
+    <!-- when you have and element inside the form of type submit the function enviarContacto will be activate -->
+    <!-- add form control defined inside of file aboutus component to control inputs -->
+    <form [formGroup]="aboutusForm"(submit)="enviarContacto()">
+        <!-- <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required/>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required/>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea type="text" id="mensaje" rows="4" name="mensaje" required></textarea>
+        
+
+        <button type="submit">Enviar Mensaje</button> -->
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" />
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" formControlName="email" />
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea type="text" id="mensaje" rows="4" formControlName="mensaje"></textarea>
+        
+            <!-- disabled leave lock activity of button until aboutusform have all requirements that put validators -->
+        <button type="submit"[disabled]="!aboutusForm.valid">Enviar Mensaje</button>
+
+
+
+
+    </form>
+   <!--  take the information that type inside inputs and show  -->
+    <p>nombre = {{aboutusForm.value.nombre}}</p>
+    <p>email = {{aboutusForm.value.email}}</p>
+    <p>mensaje = {{aboutusForm.value.mensaje}}</p>
+
+  
+    
+</div>

@@ -1,0 +1,24 @@
+<h1>Tabla del componente Hijo</h1>
+<h4>{{tituloTabla}}</h4>
+<table class="table table-success table-striped" border="1px solid black">
+    <thead>
+        <h3>JONY TABLA PRUEBA</h3>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+        </tr>        
+    </thead>
+    <tbody>
+        @for (usuario of usuarios ; track $index){
+        <tr> 
+            
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.name}}</td>
+                      
+            
+        </tr>
+    }
+      
+    </tbody>
+</table>
+
