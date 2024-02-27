@@ -5,17 +5,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
-const connection_1 = require("../database/connection");
+const connection_1 = require("./database/connection");
+const cliente_route_1 = __importDefault(require("./routes/cliente.route"));
 // you need export class for others files can use
 class Server {
     constructor() {
+        this.miapipath = {
+            cliente: "/api/v1/cliente", //contexto,versionamiento,pathcontroller
+        };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || "3000";
+        //base de datos
         (0, connection_1.dbConnection)();
-        this.desarrolloApi();
+        //llamado a metodos iniciales
+        this.middlwares();
+        //llamado a rutas
+        this.routes();
     }
     desarrolloApi() {
         this.app.get("/", (req, resp) => resp.status(200).json({ msg: "Informacion" }));
+    }
+    middlwares() {
+        //lectura del body transformar a json
+        this.app.use(express_1.default.json());
+        this.desarrolloApi();
+    }
+    routes() {
+        this.app.use(this.miapipath.cliente, cliente_route_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

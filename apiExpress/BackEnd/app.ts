@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { Server } from "./src/routes/server";
+import { Server } from "./src/server";
 
 //config .env
 dotenv.config();
