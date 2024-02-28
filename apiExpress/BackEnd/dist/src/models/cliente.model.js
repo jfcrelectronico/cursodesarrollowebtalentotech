@@ -11,7 +11,7 @@ const clienteSchema = new mongoose_1.Schema({
     NumeroDocumento: { type: String, required: true },
     PlacaVehiculo: { type: String, required: true },
     TipoVehiculo: { type: String, required: true },
-    Observaciones: { type: String, required: true },
+    Observaciones: { type: String },
     createdAt: { type: Date, default: Date.now() },
     updateAt: { type: Date, default: Date.now() },
 });
