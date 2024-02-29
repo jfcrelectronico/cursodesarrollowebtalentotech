@@ -8,7 +8,7 @@ const usuarioSchema = new Schema({
     NumeroDocumento:{type: String,required: true, unique: true},
     login :{type: String,required: true, unique: true},
     password: {type: String,required: true},
-    rol:{type: String,default: "admin"},
+    rol:{type: String,required: true,default: "admin"},
     estado :{type: Boolean, default: true},
     createdAt:{type: Date,default: Date.now()},    
 });
