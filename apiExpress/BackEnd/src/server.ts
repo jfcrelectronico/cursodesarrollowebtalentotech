@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import { dbConnection } from "./database/connection";
 
 import rutasclientes from "./routes/cliente.route";
+import rutasusuario from "./routes/usuario.route";
 
 // you need export class for others files can use
 export class Server 
@@ -11,6 +12,7 @@ export class Server
 
     private miapipath ={
         cliente : "/api/v1/cliente",//contexto,versionamiento,pathcontroller
+        usuario : "/api/v1/usuario",//contexto,versionamiento,pathcontroller
     };
 
     constructor(){
@@ -37,6 +39,7 @@ export class Server
 
     routes(): void{
         this.app.use(this.miapipath.cliente, rutasclientes);
+        this.app.use(this.miapipath.usuario, rutasusuario);
     }
 
 
