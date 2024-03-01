@@ -27,8 +27,12 @@ const crearUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* 
                 msg: `Ya existe un login ${body.login} creado`,
             });
         }
+        console.log("AQUI 1");
         const newUsuario = new usuario_model_1.default(Object.assign({}, body));
+        console.log("AQUI 2");
         const iteraciones = bcryptjs_1.default.genSaltSync(10);
+        console.log("AQUI 3");
+        console.log(body.password);
         newUsuario.password = bcryptjs_1.default.hashSync(body.password, iteraciones);
         console.log("Contraseña ", newUsuario.password);
         const usuarioCreado = yield newUsuario.save();

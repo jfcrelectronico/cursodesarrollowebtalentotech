@@ -2,7 +2,9 @@ import { check } from "express-validator";
 import { crearUsuario } from "../controllers/usuario.controller";
 import { Router } from "express";
 import { validarcampo } from "../middlewares/validarcampos";
+import validarJWT from "../middlewares/validar-jwt";
 
+//path: api/v1/usuario
 const router = Router();
 router.post("/",
 [   // for use this npm -i express-validator

@@ -18,12 +18,20 @@ export const crearUsuario = async (req: Request, resp: Response)=>{
 
             });
         }
+
+        console.log("AQUI 1");
         const newUsuario = new UsuarioModel({
             //Desestructure el body que esta recibiendo
             ...body,
         });
+        console.log("AQUI 2");
         const iteraciones = bcrypt.genSaltSync(10);
+        console.log("AQUI 3");
+
+        console.log(body.password);
+
         newUsuario.password = bcrypt.hashSync(body.password, iteraciones);
+        
         console.log("Contraseña ", newUsuario.password);
 
 

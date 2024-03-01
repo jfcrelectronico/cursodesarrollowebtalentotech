@@ -4,6 +4,7 @@ const express_validator_1 = require("express-validator");
 const usuario_controller_1 = require("../controllers/usuario.controller");
 const express_1 = require("express");
 const validarcampos_1 = require("../middlewares/validarcampos");
+//path: api/v1/usuario
 const router = (0, express_1.Router)();
 router.post("/", [
     // double systema validators

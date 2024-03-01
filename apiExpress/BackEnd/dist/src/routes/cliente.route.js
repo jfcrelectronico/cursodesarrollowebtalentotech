@@ -1,12 +1,17 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // path de cliente
 const express_1 = require("express");
 const cliente_controller_1 = require("../controllers/cliente.controller");
 const express_validator_1 = require("express-validator");
 const validarcampos_1 = require("../middlewares/validarcampos");
+const validar_jwt_1 = __importDefault(require("../middlewares/validar-jwt"));
+//path: api/v1/cliente
 const router = (0, express_1.Router)();
-router.post("/", [
+router.post("/", validar_jwt_1.default, [
     // double systema validators
     (0, express_validator_1.check)("nombre", "El nombre es obligatorio pilas pues ").not().isEmpty(),
     (0, express_validator_1.check)("telefono", "El telefono es obligatorio pilas pues ").not().isEmpty(),
@@ -26,10 +31,11 @@ router.post("/", [
        PlacaVehiculo:{type: String,required: true},
        TipoVehiculo:{type: String,required: true}, */
 ], cliente_controller_1.crearcliente); //ruta y controlador
-router.get("/", cliente_controller_1.getClientes);
-router.get("/:id", cliente_controller_1.getfiltroclientes); //: id parametro de busqueda en la peticion se omiten los :
-router.put("/:id", cliente_controller_1.updatecliente); //ruta y controlador
-router.delete("/:id", cliente_controller_1.deletecliente); //ruta y controlador
-router.put("/nombre/:id", cliente_controller_1.nombreactualizar); //ruta y controlador */
+router.get("/", validar_jwt_1.default, cliente_controller_1.getClientes);
+router.get("/:id", validar_jwt_1.default, cliente_controller_1.getfiltroclientes); //: id parametro de busqueda en la peticion se omiten los :
+router.put("/:id", validar_jwt_1.default, cliente_controller_1.updatecliente); //ruta y controlador
+router.delete("/:id", validar_jwt_1.default, cliente_controller_1.deletecliente); //ruta y controlador
+router.put("/nombre/:id", validar_jwt_1.default, cliente_controller_1.nombreactualizar); //ruta y controlador */
 exports.default = router; // for can use in others parts of code
+// si esta validarJWT se requiere token , este deberia ir en el header a traves de x-Token
 //# sourceMappingURL=cliente.route.js.map

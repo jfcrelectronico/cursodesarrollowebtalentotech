@@ -3,10 +3,11 @@ import { Router } from "express";
 import { crearcliente, deletecliente, getClientes, getfiltroclientes, nombreactualizar, updatecliente } from "../controllers/cliente.controller";
 import { check } from "express-validator";
 import { validarcampo } from "../middlewares/validarcampos";
+import validarJWT from "../middlewares/validar-jwt";
 
-
+//path: api/v1/cliente
 const router = Router();
-router.post("/",
+router.post("/",validarJWT,
 [   // for use this npm -i express-validator
     // double systema validators
     check("nombre","El nombre es obligatorio pilas pues ").not().isEmpty(),
@@ -30,9 +31,11 @@ router.post("/",
 
 ]
 ,crearcliente);//ruta y controlador
-router.get("/",getClientes);
-router.get("/:id",getfiltroclientes);//: id parametro de busqueda en la peticion se omiten los :
-router.put("/:id",updatecliente);//ruta y controlador
-router.delete("/:id",deletecliente);//ruta y controlador
-router.put("/nombre/:id",nombreactualizar);//ruta y controlador */
+router.get("/",validarJWT,getClientes);
+router.get("/:id",validarJWT,getfiltroclientes);//: id parametro de busqueda en la peticion se omiten los :
+router.put("/:id",validarJWT,updatecliente);//ruta y controlador
+router.delete("/:id",validarJWT,deletecliente);//ruta y controlador
+router.put("/nombre/:id",validarJWT,nombreactualizar);//ruta y controlador */
 export default router;// for can use in others parts of code
+
+// si esta validarJWT se requiere token , este deberia ir en el header a traves de x-Token
