@@ -8,6 +8,7 @@ const router = Router();
 router.post("/",
 [   // for use this npm -i express-validator
     // double systema validators
+    // no se usa validacion por token pues seria imposible entrar al sistema
    
     check("login","El numero de documento es obligatorio pilas pues ").not().isEmpty(),
     check("password","El numero de documento es obligatorio pilas pues ").not().isEmpty(),

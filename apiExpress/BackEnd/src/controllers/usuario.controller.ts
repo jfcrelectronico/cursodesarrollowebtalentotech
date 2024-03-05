@@ -19,21 +19,28 @@ export const crearUsuario = async (req: Request, resp: Response)=>{
             });
         }
 
-        console.log("AQUI 1");
+        const existeDocumento = await UsuarioModel.findOne({
+            NumeroDocumento: body.NumeroDocumento,
+        });
+
+        if (existeDocumento)
+        {
+            return resp.status(409).json({
+                ok: false,
+                msg: `Ya existe un documento ${body.NumeroDocumento} creado`,
+
+            });
+        }
+
+    
         const newUsuario = new UsuarioModel({
             //Desestructure el body que esta recibiendo
             ...body,
         });
-        console.log("AQUI 2");
-        const iteraciones = bcrypt.genSaltSync(10);
-        console.log("AQUI 3");
-
-        console.log(body.password);
+      
+        const iteraciones = bcrypt.genSaltSync(10);    
 
         newUsuario.password = bcrypt.hashSync(body.password, iteraciones);
-        
-        console.log("Contraseña ", newUsuario.password);
-
 
         const usuarioCreado = await newUsuario.save();
 

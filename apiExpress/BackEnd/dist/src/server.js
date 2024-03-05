@@ -9,6 +9,7 @@ const connection_1 = require("./database/connection");
 const cliente_route_1 = __importDefault(require("./routes/cliente.route"));
 const usuario_route_1 = __importDefault(require("./routes/usuario.route"));
 const autenticacion_route_1 = __importDefault(require("./routes/autenticacion.route"));
+const producto_route_1 = __importDefault(require("./routes/producto.route"));
 // you need export class for others files can use
 class Server {
     constructor() {
@@ -16,6 +17,7 @@ class Server {
             cliente: "/api/v1/cliente", //contexto,versionamiento,pathcontroller
             usuario: "/api/v1/usuario", //contexto,versionamiento,pathcontroller
             validacioncredenciales: "/api/v1/autenticacion", //contexto,versionamiento,pathcontroller
+            producto: "/api/v1/producto", //contexto,versionamiento,pathcontroller
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || "3000";
@@ -38,6 +40,7 @@ class Server {
         this.app.use(this.miapipath.cliente, cliente_route_1.default);
         this.app.use(this.miapipath.usuario, usuario_route_1.default);
         this.app.use(this.miapipath.validacioncredenciales, autenticacion_route_1.default);
+        this.app.use(this.miapipath.producto, producto_route_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 const jwt = require("jsonwebtoken");
+// se exporta la interface para poder ser usada en otros componentes donde sea necesario
 
-interface CustomRequest extends Request{
+ export interface CustomRequest extends Request{
     _id?: number; // ? implica que el campo no es obligatorio
 }
 

@@ -8,6 +8,7 @@ const autenticacion_controller_1 = require("../controllers/autenticacion.control
 const router = (0, express_1.Router)();
 router.post("/", [
     // double systema validators
+    // no se usa validacion por token pues seria imposible entrar al sistema
     (0, express_validator_1.check)("login", "El numero de documento es obligatorio pilas pues ").not().isEmpty(),
     (0, express_validator_1.check)("password", "El numero de documento es obligatorio pilas pues ").not().isEmpty(),
     validarcampos_1.validarcampo,
