@@ -89,7 +89,7 @@ const olvidoPassword = (req, resp) => __awaiter(void 0, void 0, void 0, function
             });
         }
         console.log(usuarioExiste);
-        token = yield (0, jwt_1.default)(usuarioExiste._id, usuarioExiste.login, process.env.JWT_SECRET_CHANGEPASS);
+        token = yield (0, jwt_1.default)(usuarioExiste._id, usuarioExiste.login, process.env.JWT_SECRET);
         resp.status(200).json({
             ok: true,
             usuario: usuarioExiste,
@@ -107,12 +107,22 @@ const olvidoPassword = (req, resp) => __awaiter(void 0, void 0, void 0, function
 exports.olvidoPassword = olvidoPassword;
 const actualizarPassword = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req._id;
-    console.log("abcd1234");
-    console.log(id);
     const { body } = req;
     try {
+        // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
+        //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
         const usuarioActualizar = new usuario_model_1.default(Object.assign({}, body));
-        console.log(body.id);
+        const iteraciones = bcryptjs_1.default.genSaltSync(10);
+        usuarioActualizar.password = bcryptjs_1.default.hashSync(body.password, iteraciones);
+        // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
+        //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
+        // se debe indicar el campo a actualizar para este caso password
+        const passwordActualizado = yield usuario_model_1.default.findByIdAndUpdate(id, { password: usuarioActualizar.password });
+        resp.status(200).json({
+            ok: true,
+            msg: "Usuario con id: " + id + " fue actualizado",
+            passwordActualizado,
+        });
     }
     catch (error) {
         console.log(error);
@@ -122,49 +132,6 @@ const actualizarPassword = (req, resp) => __awaiter(void 0, void 0, void 0, func
             msg: "Error al actualizar password",
         });
     }
-    /*  try{
- 
-         const {body} = req;
- 
- 
- 
-             // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
-             //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
-             
-             const usuarioActualizar = new UsuarioModel({
-                 //Desestructure el body que esta recibiendo
-                 ...body,
-             });
-           
-             const iteraciones = bcrypt.genSaltSync(10);
-     
-             usuarioActualizar.password = bcrypt.hashSync(body.password, iteraciones);
-            console.log("id recibido") ;
-            console.log(id);
-             
-             const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,usuarioActualizar.password);
-             resp.status(200).json({
-                 ok: true,
-                 msg: "Usuario con id: " + id + " fue actualizado",
-                 passwordActualizado,
-             }
-                 
-             );
- 
-     }
-     catch(error)
-     {
-         console.log(error);
-         resp.status(400).json({
-             ok: false,
-             //add sweet alert for the final application
-             msg: "Error al actualizar password",
-         });
-     
- 
- 
-     }
-  */
 });
 exports.actualizarPassword = actualizarPassword;
 //# sourceMappingURL=autenticacion.controller.js.map

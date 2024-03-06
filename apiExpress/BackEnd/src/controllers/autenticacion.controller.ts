@@ -130,39 +130,8 @@ export const olvidoPassword = async (req: Request, resp: Response)=>{
 export const actualizarPassword = async (req: CustomRequest, resp: Response)=>{
 
     const id = req._id;
-    console.log("abcd1234");
-    console.log(id);
-
     const {body} = req;
-
-    try{
-        const usuarioActualizar = new UsuarioModel({
-            //Desestructure el body que esta recibiendo
-            ...body,
-        });
-
-        console.log(body.id);
-
-    }
-    catch(error)
-    {
-        console.log(error);
-        resp.status(400).json({
-            ok: false,
-            //add sweet alert for the final application
-            msg: "Error al actualizar password",
-        });
-    
-
-
-    }
-
-   /*  try{
-
-        const {body} = req;
-
-
-
+     try{
             // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
             //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
             
@@ -172,12 +141,15 @@ export const actualizarPassword = async (req: CustomRequest, resp: Response)=>{
             });
           
             const iteraciones = bcrypt.genSaltSync(10);    
+           
     
             usuarioActualizar.password = bcrypt.hashSync(body.password, iteraciones);
-           console.log("id recibido") ;
-           console.log(id);
+           
+            // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
+            //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
+            // se debe indicar el campo a actualizar para este caso password
             
-            const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,usuarioActualizar.password);
+            const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,{password: usuarioActualizar.password});
             resp.status(200).json({
                 ok: true,
                 msg: "Usuario con id: " + id + " fue actualizado",
@@ -199,7 +171,7 @@ export const actualizarPassword = async (req: CustomRequest, resp: Response)=>{
 
 
     }
- */
+ 
 
 
 

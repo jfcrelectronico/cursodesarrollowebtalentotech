@@ -148,6 +148,7 @@ const nombreactualizar = (req, resp) => __awaiter(void 0, void 0, void 0, functi
         //body.updateAt = Date.now;
         // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
         //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
+        // se debe indicar el campo a actualizar para este caso nombre
         const clienteactualizadonombre = yield cliente_model_1.default.findByIdAndUpdate(id, { nombre: "jony" });
         resp.status(200).json({
             ok: true,

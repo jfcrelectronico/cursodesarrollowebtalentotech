@@ -199,6 +199,7 @@ export const nombreactualizar = async (req: Request, resp : Response) => {
 
             // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
             //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
+            // se debe indicar el campo a actualizar para este caso nombre
             const clienteactualizadonombre = await ClienteModel.findByIdAndUpdate(id,{nombre : "jony"});
             resp.status(200).json({
                 ok: true,

@@ -27,6 +27,6 @@ router.post("/", [
 ], autenticacion_controller_1.login); //ruta y controlador autenticacion
 router.get("/", validar_jwt_1.default, autenticacion_controller_1.RenovarToken);
 router.post("/olvidoPassword", autenticacion_controller_1.olvidoPassword);
-router.put("/actualizarPassword", autenticacion_controller_1.actualizarPassword); //ruta y controlador
+router.put("/actualizarPassword", validar_jwt_1.default, autenticacion_controller_1.actualizarPassword); //ruta y controlador
 exports.default = router; // for can use in others parts of code
 //# sourceMappingURL=autenticacion.route.js.map

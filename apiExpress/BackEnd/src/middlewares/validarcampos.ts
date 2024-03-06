@@ -1,5 +1,5 @@
-// son funciones que se ejecutan antes de ir al controlaro/
-//con ello si se tienen errores no se hace las petiociones a la base
+// son funciones que se ejecutan antes de ir al controlador/
+//con ello si se tienen errores no se hace las peticiones a la base
 
 import { NextFunction , Request, Response } from "express";
 import { validationResult } from "express-validator";

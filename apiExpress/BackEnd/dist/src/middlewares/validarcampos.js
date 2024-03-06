@@ -1,6 +1,6 @@
 "use strict";
-// son funciones que se ejecutan antes de ir al controlaro/
-//con ello si se tienen errores no se hace las petiociones a la base
+// son funciones que se ejecutan antes de ir al controlador/
+//con ello si se tienen errores no se hace las peticiones a la base
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validarcampo = void 0;
 const express_validator_1 = require("express-validator");
