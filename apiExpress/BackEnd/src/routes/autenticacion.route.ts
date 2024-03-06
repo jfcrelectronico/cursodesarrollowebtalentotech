@@ -1,7 +1,9 @@
 import { check } from "express-validator";
 import { validarcampo } from "../middlewares/validarcampos";
 import { Router } from "express";
-import { login } from "../controllers/autenticacion.controller";
+import { RenovarToken, actualizarPassword, login, olvidoPassword, } from "../controllers/autenticacion.controller";
+import validarJWT from "../middlewares/validar-jwt";
+
 
 //path: api/v1/autenticacion
 const router = Router();
@@ -10,8 +12,8 @@ router.post("/",
     // double systema validators
     // no se usa validacion por token pues seria imposible entrar al sistema
    
-    check("login","El numero de documento es obligatorio pilas pues ").not().isEmpty(),
-    check("password","El numero de documento es obligatorio pilas pues ").not().isEmpty(),
+    check("login","El correo de login es obligatorio pilas pues ").not().isEmpty(),
+    check("password","El password es obligatorio pilas pues ").not().isEmpty(),
     validarcampo,
 
  /*    nombre:{type: String,required: true},
@@ -25,4 +27,7 @@ router.post("/",
 
 ]
 ,login);//ruta y controlador autenticacion
+router.get("/",validarJWT,RenovarToken);
+router.post("/olvidoPassword",olvidoPassword);
+router.put("/actualizarPassword",actualizarPassword);//ruta y controlador
 export default router;// for can use in others parts of code

@@ -28,4 +28,5 @@ router.post("/",
 
 ]
 ,crearUsuario);//ruta y controlador
+
 export default router;// for can use in others parts of code

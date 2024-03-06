@@ -32,9 +32,9 @@ interface IOpiniones{
     fecha: Date;
 }
 
-
-interface IProducto extends Document{
-    
+//extends Document sera dado de baja en las proximas versiones por eso No deberia ser usado
+//interface IProducto extends Document{
+interface IProducto {   
     Nombre: string;
     Descripcion: string;
     Precio: number;
