@@ -107,7 +107,7 @@ export const olvidoPassword = async (req: Request, resp: Response)=>{
         console.log(usuarioExiste);
 
         
-        token = await generarJWT(usuarioExiste._id,usuarioExiste.login,process.env.JWT_SECRET_CHANGEPASS);
+        token = await generarJWT(usuarioExiste._id,usuarioExiste.login,process.env.JWT_SECRET);
         
 
         resp.status(200).json({

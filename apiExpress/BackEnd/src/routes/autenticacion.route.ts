@@ -29,5 +29,5 @@ router.post("/",
 ,login);//ruta y controlador autenticacion
 router.get("/",validarJWT,RenovarToken);
 router.post("/olvidoPassword",olvidoPassword);
-router.put("/actualizarPassword",actualizarPassword);//ruta y controlador
+router.put("/actualizarPassword",validarJWT,actualizarPassword);//ruta y controlador
 export default router;// for can use in others parts of code
