@@ -2,7 +2,7 @@ import { check } from "express-validator";
 import { validarcampo } from "../middlewares/validarcampos";
 import { Router } from "express";
 import { RenovarToken, actualizarPassword, login, olvidoPassword, } from "../controllers/autenticacion.controller";
-import {validarJWT, validarJWTPASS } from "../middlewares/validar-jwt";
+import validarJWT, {validarJWTPASS } from "../middlewares/validar-jwt";
 
 
 //path: api/v1/autenticacion

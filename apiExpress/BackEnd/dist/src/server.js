@@ -10,6 +10,7 @@ const cliente_route_1 = __importDefault(require("./routes/cliente.route"));
 const usuario_route_1 = __importDefault(require("./routes/usuario.route"));
 const autenticacion_route_1 = __importDefault(require("./routes/autenticacion.route"));
 const producto_route_1 = __importDefault(require("./routes/producto.route"));
+const cors_1 = __importDefault(require("cors"));
 // you need export class for others files can use
 class Server {
     constructor() {
@@ -33,6 +34,7 @@ class Server {
     }
     middlwares() {
         //lectura del body transformar a json
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         this.desarrolloApi();
     }

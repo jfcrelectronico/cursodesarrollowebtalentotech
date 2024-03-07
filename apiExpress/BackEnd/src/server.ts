@@ -5,6 +5,7 @@ import rutasclientes from "./routes/cliente.route";
 import rutasusuario from "./routes/usuario.route";
 import rutasvalidacion from "./routes/autenticacion.route";
 import rutaproducto from  "./routes/producto.route";
+import cors from "cors";
 
 
 // you need export class for others files can use
@@ -38,6 +39,7 @@ export class Server
 
     middlwares(){
         //lectura del body transformar a json
+        this.app.use(cors());
         this.app.use(express.json());
         this.desarrolloApi();
     }

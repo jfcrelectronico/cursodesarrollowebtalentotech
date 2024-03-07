@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
     _id?: number; // ? implica que el campo no es obligatorio
 }
 
-export const validarJWT =  (req: CustomRequest,resp: Response, next: NextFunction)=>{
+const validarJWT =  (req: CustomRequest,resp: Response, next: NextFunction)=>{
 
     const token = req.header("x-token");
     if(!token)
@@ -58,4 +58,6 @@ export const validarJWT =  (req: CustomRequest,resp: Response, next: NextFunctio
         });
     }
 };
+
+export default  validarJWT ;
 

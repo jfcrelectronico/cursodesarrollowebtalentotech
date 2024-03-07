@@ -31,7 +31,8 @@ router.post("/",validarJWT,
 
 ]
 ,crearcliente);//ruta y controlador
-router.get("/",validarJWT,getClientes);
+//router.get("/",validarJWT,getClientes);
+router.get("/",getClientes);
 router.get("/:id",validarJWT,getfiltroclientes);//: id parametro de busqueda en la peticion se omiten los :
 router.put("/:id",validarJWT,updatecliente);//ruta y controlador
 router.delete("/:id",validarJWT,deletecliente);//ruta y controlador

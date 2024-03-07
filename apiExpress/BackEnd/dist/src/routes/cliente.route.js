@@ -31,7 +31,8 @@ router.post("/", validar_jwt_1.default, [
        PlacaVehiculo:{type: String,required: true},
        TipoVehiculo:{type: String,required: true}, */
 ], cliente_controller_1.crearcliente); //ruta y controlador
-router.get("/", validar_jwt_1.default, cliente_controller_1.getClientes);
+//router.get("/",validarJWT,getClientes);
+router.get("/", cliente_controller_1.getClientes);
 router.get("/:id", validar_jwt_1.default, cliente_controller_1.getfiltroclientes); //: id parametro de busqueda en la peticion se omiten los :
 router.put("/:id", validar_jwt_1.default, cliente_controller_1.updatecliente); //ruta y controlador
 router.delete("/:id", validar_jwt_1.default, cliente_controller_1.deletecliente); //ruta y controlador
