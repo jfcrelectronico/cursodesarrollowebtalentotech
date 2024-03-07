@@ -2,7 +2,7 @@ import { check } from "express-validator";
 import { validarcampo } from "../middlewares/validarcampos";
 import { Router } from "express";
 import { RenovarToken, actualizarPassword, login, olvidoPassword, } from "../controllers/autenticacion.controller";
-import validarJWT from "../middlewares/validar-jwt";
+import {validarJWT, validarJWTPASS } from "../middlewares/validar-jwt";
 
 
 //path: api/v1/autenticacion
@@ -28,6 +28,17 @@ router.post("/",
 ]
 ,login);//ruta y controlador autenticacion
 router.get("/",validarJWT,RenovarToken);
-router.post("/olvidoPassword",olvidoPassword);
-router.put("/actualizarPassword",validarJWT,actualizarPassword);//ruta y controlador
+router.post("/olvidoPassword",
+[
+    check("login","El correo de login es obligatorio pilas pues ").not().isEmpty(),
+    check("NumeroDocumento","El numero de documento es obligatorio pilas pues ").not().isEmpty(),
+    validarcampo, 
+],
+olvidoPassword);
+router.put("/actualizarPassword",
+validarJWTPASS,
+[
+    check("password","El password es obligatorio pilas pues ").not().isEmpty(),
+    validarcampo, 
+],actualizarPassword);//ruta y controlador
 export default router;// for can use in others parts of code

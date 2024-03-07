@@ -107,7 +107,7 @@ export const olvidoPassword = async (req: Request, resp: Response)=>{
         console.log(usuarioExiste);
 
         
-        token = await generarJWT(usuarioExiste._id,usuarioExiste.login,process.env.JWT_SECRET);
+        token = await generarJWT(usuarioExiste._id,usuarioExiste.login,process.env.JWT_SECRET_CHANGEPASS);
         
 
         resp.status(200).json({
@@ -130,26 +130,41 @@ export const olvidoPassword = async (req: Request, resp: Response)=>{
 export const actualizarPassword = async (req: CustomRequest, resp: Response)=>{
 
     const id = req._id;
-    const {body} = req;
+    //const {body} = req;
+    const {password} = req.body;
      try{
             // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
             //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
             
-            const usuarioActualizar = new UsuarioModel({
+           /*  const usuarioActualizar = new UsuarioModel({
                 //Desestructure el body que esta recibiendo
                 ...body,
-            });
+            }); */
           
-            const iteraciones = bcrypt.genSaltSync(10);    
+            //const iteraciones = bcrypt.genSaltSync(10);    
            
     
-            usuarioActualizar.password = bcrypt.hashSync(body.password, iteraciones);
+           /*  usuarioActualizar.password = bcrypt.hashSync(body.password, 10); */
+
+
+          /*  if(!password)
+           {
+            resp.status(400).json({
+                ok: false,
+                //add sweet alert for the final application
+                msg: "Digite una contraseña valida",
+            });
+
+
+           } */
+           const  newpassword = bcrypt.hashSync(password, 10);
            
             // id por el cual busco al clienbte, la info a asignar, retorne la informacion actualizada
             //para la actualizacion  solo se podria enviar el dato a actualizar no se requiere todo el cuerpo
             // se debe indicar el campo a actualizar para este caso password
             
-            const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,{password: usuarioActualizar.password});
+            /* const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,{password: usuarioActualizar.password}); */
+            const passwordActualizado = await UsuarioModel.findByIdAndUpdate(id,{password: newpassword});
             resp.status(200).json({
                 ok: true,
                 msg: "Usuario con id: " + id + " fue actualizado",
