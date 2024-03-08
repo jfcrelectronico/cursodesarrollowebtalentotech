@@ -11,7 +11,9 @@ const validarcampos_1 = require("../middlewares/validarcampos");
 const validar_jwt_1 = __importDefault(require("../middlewares/validar-jwt"));
 //path: api/v1/cliente
 const router = (0, express_1.Router)();
-router.post("/", validar_jwt_1.default, [
+router.post("/", 
+//validarJWT,
+[
     // double systema validators
     (0, express_validator_1.check)("nombre", "El nombre es obligatorio pilas pues ").not().isEmpty(),
     (0, express_validator_1.check)("telefono", "El telefono es obligatorio pilas pues ").not().isEmpty(),

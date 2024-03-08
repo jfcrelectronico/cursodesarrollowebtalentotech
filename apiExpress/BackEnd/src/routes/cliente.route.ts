@@ -7,7 +7,8 @@ import validarJWT from "../middlewares/validar-jwt";
 
 //path: api/v1/cliente
 const router = Router();
-router.post("/",validarJWT,
+router.post("/",
+//validarJWT,
 [   // for use this npm -i express-validator
     // double systema validators
     check("nombre","El nombre es obligatorio pilas pues ").not().isEmpty(),
